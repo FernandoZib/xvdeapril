@@ -324,7 +324,7 @@
     setupTypewriter('hero-frase');
 
 
-/* --- PROTECCIÓN DE INTERFAZ --- */
+    /* --- PROTECCIÓN DE INTERFAZ --- */
 
 // 1. Bloquear Click Derecho
 document.addEventListener('contextmenu', (e) => {
