@@ -323,26 +323,49 @@
     }    
     setupTypewriter('hero-frase');
 
+// ==========================================
+// 1. BLOQUEAR CLIC DERECHO Y MENÚ CONTEXTUAL
+// ==========================================
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
 
-    /* --- PROTECCIÓN DE INTERFAZ --- */
+// ==========================================
+// 2. BLOQUEAR SELECCIÓN DE TEXTO
+// ==========================================
+// Opción JS para evitar el inicio de la selección
+document.addEventListener('selectstart', (event) => {
+    event.preventDefault();
+});
 
-// 1. Bloquear Click Derecho
-document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-}, false);
+// Refuerzo con CSS inyectado desde JS (más efectivo para navegadores móviles)
+const style = document.createElement('style');
+style.innerHTML = `
+  body {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* IE 10 y Edge */
+    user-select: none;         /* Estándar (Chrome, Firefox, Opera) */
+  }
+`;
+document.head.appendChild(style);
 
-// 2. Bloquear atajos de teclado para Zoom (Ctrl + / Ctrl - / Ctrl Wheel)
-document.addEventListener('keydown', (e) => {
-    if (
-        e.ctrlKey && 
-        (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')
-    ) {
-        e.preventDefault();
-    }
-}, false);
+// ==========================================
+// 3. BLOQUEAR ZOOM EN DISPOSITIVOS MÓVILES
+// ==========================================
 
-document.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) {
-        e.preventDefault();
+// A) Bloquear el "Pinch-to-Zoom" (pellizcar la pantalla con dos dedos)
+document.addEventListener('touchstart', (event) => {
+    if (event.touches.length > 1) {
+        event.preventDefault();
     }
 }, { passive: false });
+
+// B) Bloquear el "Double-Tap" (doble toque rápido que hace zoom automáticamente)
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (event) => {
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
