@@ -373,7 +373,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--gold);
   text-align: center;
 }
-.ornament--top { margin-bottom: 40px; }
+.ornament--top { margin-bottom: -40px; }
 .ornament--bottom { margin-top: 40px; }
 
 .message__text {
