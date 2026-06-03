@@ -334,6 +334,37 @@
     <p class="footer__credit">Con amor, para ti ✦</p>
   </footer>
 
+  <!-- ════════════════ BOTÓN FLOTANTE DE MÚSICA ════════════════ -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="musicBtn" title="Reproducir / Pausar música">
+    <!-- Anillo de pulso -->
+    <span class="music-btn__ring"></span>
+
+    <!-- Disco LP -->
+    <span class="music-btn__disc">
+      <!-- Nota musical (estado pausado) -->
+      <span class="music-btn__icon">
+        <svg class="music-note" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+        </svg>
+      </span>
+      <!-- Ícono pausa (estado reproduciendo) -->
+      <span class="music-btn__pause"><span></span><span></span></span>
+      <!-- Punto central del disco -->
+      <span class="music-btn__center"></span>
+    </span>
+
+    <!-- Barras de audio -->
+    <span class="music-btn__bars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </span>
+
+    <span class="music-btn__label" id="musicLabel">Música</span>
+  </button>
+
   <script src="script.js"></script>
   <script>lucide.createIcons();</script>
 </body>

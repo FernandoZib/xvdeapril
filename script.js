@@ -226,6 +226,69 @@
         animate();
     }
 
+// ─── 10. BOTÓN FLOTANTE DE MÚSICA ─────────────
+;(function () {
+  const btn   = document.getElementById('musicBtn')
+  const audio = document.getElementById('bg-music')
+  const label = document.getElementById('musicLabel')
+
+  if (!btn || !audio) return
+
+  let playing = false
+
+  function setPlaying (state) {
+    playing = state
+    btn.classList.toggle('is-playing', state)
+    if (label) label.textContent = state ? 'Pausar' : 'Música'
+  }
+
+  // ── Arrancar con fade in suave ──
+  function startWithFade () {
+    audio.volume = 0
+    audio.play()
+      .then(() => {
+        setPlaying(true)
+        let vol = 0
+        const fadeIn = setInterval(() => {
+          vol = Math.min(vol + 0.04, 1)
+          audio.volume = vol
+          if (vol >= 1) clearInterval(fadeIn)
+        }, 80)
+      })
+      .catch(() => setPlaying(false))
+  }
+
+  // ── Activar al primer scroll ──
+  let scrollUnlocked = false
+  function onFirstScroll () {
+    if (scrollUnlocked) return
+    scrollUnlocked = true
+    window.removeEventListener('scroll',    onFirstScroll)
+    window.removeEventListener('touchmove', onFirstScroll)
+    window.removeEventListener('wheel',     onFirstScroll)
+    startWithFade()
+  }
+
+  window.addEventListener('scroll',    onFirstScroll, { passive: true })
+  window.addEventListener('touchmove', onFirstScroll, { passive: true })
+  window.addEventListener('wheel',     onFirstScroll, { passive: true })
+
+  // Click manual
+  btn.addEventListener('click', () => {
+    if (playing) {
+      audio.pause()
+      setPlaying(false)
+    } else {
+      audio.volume = 1
+      audio.play().then(() => setPlaying(true)).catch(() => {})
+    }
+  })
+
+  audio.addEventListener('pause', () => setPlaying(false))
+  audio.addEventListener('play',  () => setPlaying(true))
+})()
+
+
    // --- EFECTO DE ESCRITURA (TYPEWRITER) ---
     // Se mantiene intacto como lo tenías, funcionando con su propio observer
     function setupTypewriter(id) {
