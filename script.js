@@ -33,6 +33,7 @@
     this.vy   = rand(-0.4, -0.1)
     this.alpha= rand(0.15, 0.65)
     this.fade = rand(0.001, 0.003)
+    this.colorIndex = Math.random()
   }
   Particle.prototype.update = function () {
     this.x += this.vx
@@ -53,7 +54,12 @@
       p.update()
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(201,168,76,${p.alpha})`
+      const colors = [
+        `rgba(201,168,76,${p.alpha})`,
+        `rgba(181,69,90,${p.alpha * 0.6})`,
+        `rgba(232,201,122,${p.alpha})`
+      ]
+      ctx.fillStyle = colors[Math.floor(p.colorIndex * colors.length)]
       ctx.fill()
     })
     requestAnimationFrame(loop)
@@ -80,7 +86,7 @@
 
 // ─── 3. COUNTDOWN ─────────────────────────────
 ;(function () {
-  const target = new Date('2025-07-25T16:00:00') // Sábado 25 Julio, Misa 4pm
+  const target = new Date('2026-07-25T16:00:00') // Sábado 25 Julio 2026, Misa 4pm
 
   const elDays  = document.getElementById('cd-days')
   const elHours = document.getElementById('cd-hours')
@@ -95,7 +101,13 @@
     const diff = target - Date.now()
 
     if (diff <= 0) {
+      // La fiesta ya llegó — mostrar mensaje festivo
       elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00'
+      const section = document.getElementById('countdown-section')
+      if (section) {
+        const title = section.querySelector('.section-title')
+        if (title) title.textContent = '¡Es hoy! 🌹'
+      }
       return
     }
 

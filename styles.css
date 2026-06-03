@@ -4,14 +4,18 @@
 :root {
   --gold:        #C9A84C;
   --gold-light:  #E8C97A;
-  --gold-deep:   #8B6914;
-  --ivory:       #FAF6EF;
-  --ivory-dark:  #F0E9DC;
-  --text-dark:   #1C1410;
-  --text-mid:    #4A3820;
-  --text-light:  #8B7355;
+  --gold-deep:   #9B7B1A;
+  --ivory:       #FDF5EE;
+  --ivory-dark:  #F5E8DC;
+  --wine:        #6B1A2A;
+  --wine-deep:   #4A0F1C;
+  --wine-mid:    #8B2336;
+  --wine-light:  #B5455A;
+  --text-dark:   #2A0A12;
+  --text-mid:    #6B2030;
+  --text-light:  #9B5060;
   --white:       #FFFFFF;
-  --shadow:      rgba(139,105,20,0.18);
+  --shadow:      rgba(107,26,42,0.22);
 
   --font-display: 'Great Vibes', cursive;
   --font-serif:   'Cormorant Garamond', Georgia, serif;
@@ -57,7 +61,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-align: center;
-  color: var(--text-dark);
+  color: var(--wine-deep);
   margin-bottom: 0.4em;
 }
 
@@ -101,7 +105,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--ivory-dark) 0%, #e8dfc8 100%);
+  background: linear-gradient(135deg, var(--ivory-dark) 0%, #eed8cc 100%);
   color: var(--gold-deep);
   text-align: center;
   padding: 20px;
@@ -116,7 +120,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .hero {
   min-height: 100svh;
-  background: linear-gradient(160deg, #1c1006 0%, #2e1f08 50%, #1a1206 100%);
+  background: linear-gradient(160deg, #2a0a12 0%, #4a0f1c 50%, #1e0810 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +141,7 @@ a { color: inherit; text-decoration: none; }
 .hero__veil {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.10) 0%, rgba(107,26,42,0.15) 60%, transparent 100%);
   z-index: 1;
 }
 
@@ -315,7 +319,7 @@ a { color: inherit; text-decoration: none; }
    MESSAGE
 ══════════════════════════════════════════════ */
 .message {
-  background: var(--ivory-dark);
+  background: linear-gradient(160deg, var(--ivory-dark) 0%, #f0ddd5 100%);
   padding: 80px 24px;
   text-align: center;
   position: relative;
@@ -336,7 +340,7 @@ a { color: inherit; text-decoration: none; }
   font-style: italic;
   font-size: clamp(1.2rem, 3.5vw, 1.7rem);
   font-weight: 300;
-  color: var(--text-mid);
+  color: var(--wine);
   line-height: 1.8;
   max-width: 600px;
   margin: 0 auto 1.2rem;
@@ -374,7 +378,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .events {
   padding: 90px 24px;
-  background: linear-gradient(160deg, #1c1006 0%, #2b1a07 100%);
+  background: linear-gradient(160deg, #2a0a12 0%, #4a0f1c 100%);
   position: relative;
   overflow: hidden;
 }
@@ -505,52 +509,173 @@ a { color: inherit; text-decoration: none; }
    COUNTDOWN
 ══════════════════════════════════════════════ */
 .countdown {
-  padding: 80px 24px;
-  background: var(--ivory-dark);
+  padding: 100px 24px;
+  background: linear-gradient(160deg, #3b0a18 0%, var(--wine-deep) 40%, #2a0a12 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background "XV" watermark */
+.countdown::before {
+  content: 'XV';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-caps);
+  font-size: clamp(180px, 35vw, 320px);
+  font-weight: 600;
+  color: rgba(201,168,76,0.04);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Decorative top & bottom gold lines */
+.countdown::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+}
+
+.countdown .section-title {
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(201,168,76,0.3);
+}
+
+.countdown__subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(250,246,239,0.5);
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
 }
 
 .countdown__grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
-  margin-top: 2rem;
+  gap: 20px;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Separators between units */
+.countdown__sep {
+  font-family: var(--font-caps);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 300;
+  color: rgba(201,168,76,0.4);
+  align-self: flex-start;
+  padding-top: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: flex-start;
 }
 
 .countdown__unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  min-width: 100px;
+  gap: 0;
+  min-width: 110px;
+}
+
+/* Card box for each number */
+.countdown__card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: var(--r-md);
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(201,168,76,0.12);
+  transition: border-color 0.4s;
+  overflow: hidden;
+}
+
+.countdown__card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: rgba(255,255,255,0.025);
+  pointer-events: none;
+}
+
+/* Gold corner accents */
+.countdown__card::after {
+  content: '';
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 10px; height: 10px;
+  border-top: 1px solid rgba(201,168,76,0.5);
+  border-right: 1px solid rgba(201,168,76,0.5);
+  pointer-events: none;
+}
+
+.countdown__unit:hover .countdown__card {
+  border-color: rgba(201,168,76,0.55);
 }
 
 .countdown__num {
   font-family: var(--font-caps);
-  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
   font-weight: 600;
-  color: var(--gold-deep);
+  color: var(--gold-light);
   line-height: 1;
+  text-shadow: 0 0 20px rgba(201,168,76,0.35);
+  letter-spacing: 0.02em;
   position: relative;
-}
-.countdown__num::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 10%;
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 1;
 }
 
 .countdown__label {
   font-family: var(--font-caps);
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-top: 10px;
+  color: rgba(250,246,239,0.45);
+  margin-top: 12px;
+  padding: 5px 12px;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 20px;
+}
+
+/* Bottom gold decorative line */
+.countdown__footer {
+  margin-top: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.countdown__footer-line {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5));
+}
+.countdown__footer-line--rev {
+  background: linear-gradient(90deg, rgba(201,168,76,0.5), transparent);
+}
+.countdown__footer-icon {
+  font-size: 1rem;
+  color: var(--gold);
+  opacity: 0.6;
 }
 
 /* ══════════════════════════════════════════════
@@ -575,16 +700,16 @@ a { color: inherit; text-decoration: none; }
 .btn-outline {
   display: inline-block;
   padding: 12px 32px;
-  border: 1.5px solid var(--gold-deep);
+  border: 1.5px solid var(--wine-mid);
   border-radius: 30px;
   font-family: var(--font-caps);
   font-size: 0.78rem;
   letter-spacing: 0.15em;
-  color: var(--gold-deep);
+  color: var(--wine-mid);
   transition: background 0.3s, color 0.3s;
 }
 .btn-outline:hover {
-  background: var(--gold-deep);
+  background: var(--wine-mid);
   color: var(--ivory);
 }
 
@@ -593,7 +718,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .rsvp {
   padding: 80px 24px;
-  background: linear-gradient(160deg, #1c1006 0%, #2b1a07 100%);
+  background: linear-gradient(160deg, #2a0a12 0%, #4a0f1c 100%);
   text-align: center;
 }
 .rsvp .section-title { color: var(--gold); }
@@ -668,7 +793,7 @@ a { color: inherit; text-decoration: none; }
    FOOTER
 ══════════════════════════════════════════════ */
 .footer {
-  background: #100c04;
+  background: #150508;
   padding: 60px 24px 40px;
   text-align: center;
 }
@@ -719,6 +844,10 @@ a { color: inherit; text-decoration: none; }
 
   .hero__photo { width: 130px; height: 130px; }
   .hero__photo .photo-placeholder { min-height: 130px; }
+
+  .countdown__card { width: 88px; height: 88px; }
+  .countdown__unit { min-width: 88px; }
+  .countdown__sep { display: none; }
 
   .map-wrapper { height: 260px; }
 }
