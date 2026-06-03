@@ -5,14 +5,21 @@
   --gold:        #C9A84C;
   --gold-light:  #E8C97A;
   --gold-deep:   #9B7B1A;
+  --gold-lt:     #E8D09A;
+  --gold-dk:     #8B6914;
+  --cremita:     #F9F3EA;
   --ivory:       #FDF5EE;
+  --crimson:     #8B1A1A;
+  --crimson-dk:  #722F37;  
+  --crimson-lt:  #B84040;  
   --ivory-dark:  #F5E8DC;
-  --wine:        #6B1A2A;
-  --wine-deep:   #4A0F1C;
-  --wine-mid:    #8B2336;
-  --wine-light:  #B5455A;
-  --text-dark:   #2A0A12;
-  --text-mid:    #6B2030;
+  --wine:        #722F37;
+  --wine-deep:   #39171B;
+  --wine-mid:    #8B3A44;
+  --wine-light:  #B05060;
+  --text-dark:   #2A0F12;
+  --text-mid:    #722F37;
+  --cream:      #F0E8D8;
   --text-light:  #9B5060;
   --white:       #FFFFFF;
   --shadow:      rgba(107,26,42,0.22);
@@ -52,16 +59,32 @@ a { color: inherit; text-decoration: none; }
   padding: 0 24px;
 }
 
+.bordes {
+  border-style: solid;
+  border-color: var(--crimson-dk);
+  border-radius: 8%;
+}
+
+#petalos-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 5; /* Ajusta si usas otros elementos flotantes */
+}
+
 /* ══════════════════════════════════════════════
    TYPOGRAPHY UTILITIES
 ══════════════════════════════════════════════ */
 .section-title {
   font-family: var(--font-caps);
-  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-align: center;
-  color: var(--wine-deep);
+  color: var(--gold);
   margin-bottom: 0.4em;
 }
 
@@ -136,6 +159,7 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   pointer-events: none;
   z-index: 0;
+
 }
 
 .hero__veil {
@@ -315,13 +339,29 @@ a { color: inherit; text-decoration: none; }
   100% { opacity: 0; top: 18px; }
 }
 
+/* Overrides for sections with wine background */
+.message .section-title,
+.gallery .section-title {
+  color: var(--gold);
+}
+.message .section-sub,
+.gallery .section-sub {
+  color: rgba(250,246,239,0.65);
+}
+
+/* Sections with light background get wine-deep titles */
+.events .section-title { color: var(--gold); }
+.rsvp .section-title   { color: var(--gold); }
+.countdown .section-title { color: var(--gold); }
+
 /* ══════════════════════════════════════════════
    MESSAGE
 ══════════════════════════════════════════════ */
 .message {
-  background: linear-gradient(160deg, var(--ivory-dark) 0%, #f0ddd5 100%);
+  background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   padding: 80px 24px;
   text-align: center;
+  margin-bottom: -10px;
   position: relative;
 }
 
@@ -338,11 +378,11 @@ a { color: inherit; text-decoration: none; }
 .message__text {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-size: clamp(2.2rem, 3.5vw, 1.7rem);
   font-weight: 300;
-  color: var(--wine);
+  color: var(--ivory);
   line-height: 1.8;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto 1.2rem;
 }
 
@@ -357,7 +397,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .gallery {
   padding: 80px 0;
-  background: var(--ivory);
+  background: #722F37;
 }
 
 .gallery__grid {
@@ -377,8 +417,8 @@ a { color: inherit; text-decoration: none; }
    EVENTS
 ══════════════════════════════════════════════ */
 .events {
-  padding: 90px 24px;
-  background: linear-gradient(160deg, #2a0a12 0%, #4a0f1c 100%);
+  padding: 90px 1px;
+  background: #722F37;
   position: relative;
   overflow: hidden;
 }
@@ -423,7 +463,7 @@ a { color: inherit; text-decoration: none; }
 
 .event-card--main {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.06);
+  background: var(--cremita);
   flex: 1 1 300px;
 }
 
@@ -432,7 +472,7 @@ a { color: inherit; text-decoration: none; }
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--gold);
+  background: var(--cream);
   color: var(--text-dark);
   font-family: var(--font-caps);
   font-size: 0.7rem;
@@ -461,8 +501,8 @@ a { color: inherit; text-decoration: none; }
 
 .event-card__venue {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--gold-light);
+  font-size: 3.5rem;
+  color: var(--crimson-dk);
 }
 
 .event-card__divider {
@@ -476,8 +516,8 @@ a { color: inherit; text-decoration: none; }
 .event-card__address {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.92rem;
-  color: rgba(250,246,239,0.7);
+  font-size: 1.6rem;
+  color: black;
   line-height: 1.8;
 }
 
@@ -486,8 +526,8 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   gap: 6px;
   margin-top: 16px;
-  font-size: 0.9rem;
-  color: var(--gold-light);
+  font-size: 1.3rem;
+  color: black;
 }
 
 .event-card__map-btn {
@@ -505,12 +545,42 @@ a { color: inherit; text-decoration: none; }
 }
 .event-card__map-btn:hover { background: var(--gold-light); }
 
+/* Lucide icon styles */
+.icon-gold {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  stroke: var(--gold);
+  stroke-width: 1.8;
+  fill: none;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+.icon-btn {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  stroke: var(--text-dark);
+  stroke-width: 2;
+  fill: none;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.event-card__schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
 /* ══════════════════════════════════════════════
    COUNTDOWN
 ══════════════════════════════════════════════ */
 .countdown {
   padding: 100px 24px;
-  background: linear-gradient(160deg, #3b0a18 0%, var(--wine-deep) 40%, #2a0a12 100%);
+  background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -543,7 +613,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .countdown .section-title {
-  color: var(--gold);
+  color: var(--cremita);
   text-shadow: 0 0 30px rgba(201,168,76,0.3);
 }
 
@@ -646,7 +716,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.6rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(250,246,239,0.45);
+  color: var(--cremita);
   margin-top: 12px;
   padding: 5px 12px;
   border: 1px solid rgba(201,168,76,0.15);
@@ -678,39 +748,283 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.6;
 }
 
-/* ══════════════════════════════════════════════
-   MAP
-══════════════════════════════════════════════ */
-.map-section {
-  padding: 80px 24px;
-  background: var(--ivory);
+
+/* ── HOSPEDAJE ─────────────────────────────── */
+.hotel-section {
+ background: var(--crimson-dk);
+}
+.hotel-intro {
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+.hotel-intro strong { color: var(--cream-dk); }
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+.hotel-card {
+  background: var(--cream);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50px;
+  padding: 32px 20px;
   text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hotel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(93,43,42,0.1);
+}
+.hotel-icon {
+  font-size: 2rem;
+  color: var(--crimson);
+  margin-bottom: 14px;
+}
+.hotel-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--crimson-dk);
+  margin-bottom: 8px;
+}
+.hotel-card p {
+  font-size: 0.88rem;
+  color: #7a5050;
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
 
-.map-wrapper {
-  width: 100%;
-  height: 360px;
-  border-radius: var(--r-md);
+  .section { padding: 60px 16px; }
+
+.section-title {  
+  font-weight: 400;
+  font-family: var(--font-serif);
+  font-size: 2em;
+  color: var(--cream);
+  margin-bottom: 40px;
+  line-height: 1.2;  
+}
+.venue-location i, .venue-hour i { color: var(--gold); margin-right: 6px; }
+.venue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-dk));
+  color: var(--gold-lt);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s;
+}
+.venue-btn:hover {
+  background: linear-gradient(135deg, var(--crimson-lt), var(--crimson));
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════
+   CARTA ELEGANTE
+══════════════════════════════════════════════ */
+.quote-section {
+  padding: 100px 24px;
+  background: linear-gradient(175deg, var(--ivory) 0%, var(--ivory-dark) 60%, #e8d5c4 100%);
+  text-align: center;
+  position: relative;
   overflow: hidden;
-  border: 2px solid var(--gold);
-  margin: 0 auto 24px;
-  box-shadow: 0 8px 40px var(--shadow);
 }
 
-.btn-outline {
-  display: inline-block;
-  padding: 12px 32px;
-  border: 1.5px solid var(--wine-mid);
-  border-radius: 30px;
-  font-family: var(--font-caps);
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
-  color: var(--wine-mid);
-  transition: background 0.3s, color 0.3s;
+/* Esquinas doradas decorativas */
+.quote__corner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  opacity: 0.45;
 }
-.btn-outline:hover {
-  background: var(--wine-mid);
-  color: var(--ivory);
+.quote__corner--tl { top: 24px; left: 24px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.quote__corner--tr { top: 24px; right: 24px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.quote__corner--bl { bottom: 24px; left: 24px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.quote__corner--br { bottom: 24px; right: 24px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+.quote-section .container {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Eyebrow */
+.quote__eyebrow {
+  font-family: var(--font-caps);
+  font-size: 1.68rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.7rem;
+}
+
+/* Separador dorado pequeño */
+.quote__top-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.4rem;
+}
+.quote__top-sep-line {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.quote__top-sep-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.quote__top-sep-icon {
+  width: 7px; height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Título cursiva grande */
+.quote__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  color: var(--wine);
+  line-height: 1.2;
+  margin-bottom: 2.2rem;
+}
+
+/* Tarjeta de carta */
+.quote__card {
+  background: var(--white);
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 4px;
+  box-shadow:
+    0 2px 0 rgba(201,168,76,0.25),
+    0 12px 40px rgba(107,26,42,0.12),
+    0 2px 8px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Franja dorada superior */
+.quote__card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light), var(--gold), var(--gold-light), var(--gold-deep));
+}
+
+/* Marca de agua XV sutil */
+.quote__card::after {
+  content: 'XV';
+  position: absolute;
+  bottom: -10px; right: 10px;
+  font-family: var(--font-caps);
+  font-size: 7rem;
+  font-weight: 600;
+  color: rgba(201,168,76,0.05);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.quote__card-inner {
+  padding: 48px 48px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Comilla apertura */
+.quote__open-mark {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--gold);
+  opacity: 0.25;
+  line-height: 0.6;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Comilla cierre */
+.quote__close-mark {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--gold);
+  opacity: 0.25;
+  line-height: 0.4;
+  text-align: right;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.quote__body {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.35rem, 2.8vw, 1.25rem);
+  font-weight: 300;
+  color: var(--wine);
+  line-height: 2.1;
+  text-align: center;
+  padding: 0 8px;
+}
+
+/* Separador interno de la carta */
+.quote__card-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 28px 0 22px;
+}
+.quote__card-sep-line {
+  display: block;
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5));
+}
+.quote__card-sep-line:last-child {
+  background: linear-gradient(90deg, rgba(201,168,76,0.5), transparent);
+}
+.quote__card-sep-diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Firma */
+.quote__signature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.quote__signature-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 2.8rem);
+  color: var(--wine);
+  display: block;
+  font-style: normal;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+@media (max-width: 500px) {
+  .quote__card-inner { padding: 36px 24px 32px; }
+  .quote__open-mark, .quote__close-mark { font-size: 4rem; }
 }
 
 /* ══════════════════════════════════════════════
@@ -718,7 +1032,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .rsvp {
   padding: 80px 24px;
-  background: linear-gradient(160deg, #2a0a12 0%, #4a0f1c 100%);
+  background: #722F37;
   text-align: center;
 }
 .rsvp .section-title { color: var(--gold); }
@@ -793,7 +1107,7 @@ a { color: inherit; text-decoration: none; }
    FOOTER
 ══════════════════════════════════════════════ */
 .footer {
-  background: #150508;
+  background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
   padding: 60px 24px 40px;
   text-align: center;
 }
@@ -817,7 +1131,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.72rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(250,246,239,0.35);
+  color: var(--cream);
   margin-bottom: 20px;
 }
 
@@ -825,7 +1139,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.9rem;
-  color: rgba(250,246,239,0.2);
+  color: var(--cream);
 }
 
 /* ══════════════════════════════════════════════

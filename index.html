@@ -8,8 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />  
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
+  <canvas id="petalos-canvas"></canvas>
 
   <!-- ════════════════ HERO ════════════════ -->
   <section class="hero" id="hero">
@@ -20,11 +23,8 @@
       <p class="hero__eyebrow">Te invitamos a celebrar</p>
 
       <!-- Placeholder for hero photo -->
-      <div class="photo-frame hero__photo">
-        <div class="photo-placeholder">
-          <span class="photo-icon">✦</span>
-          <span class="photo-label">Foto de April<br><small>(reemplaza esta imagen)</small></span>
-        </div>
+      <div class="photo-frame hero__photo">          
+        <img src="april.png">
       </div>
 
       <p class="hero__pre">los</p>
@@ -58,7 +58,7 @@
   <section class="message" id="mensaje">
     <div class="ornament ornament--top">✦ ✦ ✦</div>
     <div class="container reveal">
-      <p class="message__text">
+      <p class="message__text" id="hero-frase">
         "Hoy mis sueños se convierten en realidad<br>
         y quiero vivirlos junto a las personas<br>
         que más amo."
@@ -68,14 +68,15 @@
     <div class="ornament ornament--bottom">✦ ✦ ✦</div>
   </section>
 
-  <!-- ════════════════ GALERÍA ════════════════ -->
+  
+   <!--════════════════ GALERÍA ════════════════ 
+  
   <section class="gallery" id="galeria">
     <div class="container">
       <h3 class="section-title reveal">Galería</h3>
       <p class="section-sub reveal">Momentos que nos trajeron hasta aquí</p>
 
-      <div class="gallery__grid reveal">
-        <!-- Slots para 6 fotos -->
+      <div class="gallery__grid reveal">        
         <div class="gallery__item gallery__item--tall photo-frame">
           <div class="photo-placeholder">
             <span class="photo-icon">✦</span>
@@ -115,6 +116,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- ════════════════ EVENTOS ════════════════ -->
   <section class="events" id="eventos">
@@ -127,9 +129,8 @@
         <!-- Misa -->
         <div class="event-card event-card--main reveal">
           <div class="event-card__badge">25 · Julio</div>
-          <div class="event-card__icon">⛪</div>
-          <h4 class="event-card__title">Misa</h4>
-          <p class="event-card__venue">San Miguel el Grande</p>
+          <div><img src="Ceremonia.jpg" width="270px" height="250px" class="bordes"></div>
+          <h1 class="event-card__venue">Ceremonia</h1>
           <div class="event-card__divider"></div>
           <p class="event-card__address">
             San Miguel el Grande #3401<br>
@@ -137,23 +138,24 @@
             Chihuahua, Chih.
           </p>
           <div class="event-card__schedule">
-            <span>🕓 Ceremonia: 4:00 p.m.</span>
+            <span class="event-card__schedule-item">
+              <i data-lucide="clock" class="icon-gold"></i> 4:00 p.m.
+            </span>
           </div>
           <a
-            href="#"
+            href="https://maps.app.goo.gl/uj3k4Zd4qWJnc5xk7"
             target="_blank"
             class="event-card__map-btn"
           >
-            📍 Ver en Google Maps
+            <i data-lucide="map-pin" class="icon-btn"></i> Ver en Google Maps
           </a>
         </div>
 
         <!-- Recepción -->
         <div class="event-card event-card--main reveal">
           <div class="event-card__badge">25 · Julio</div>
-          <div class="event-card__icon">🌹</div>
-          <h4 class="event-card__title">Recepción</h4>
-          <p class="event-card__venue">Quinta Regina</p>
+           <div><img src="local.jpg" width="270px" height="250px" class="bordes"></div>         
+          <h1 class="event-card__venue">Recepción</h1>
           <div class="event-card__divider"></div>
           <p class="event-card__address">
             Calle Camino Real<br>
@@ -161,15 +163,16 @@
             31415 Chihuahua, Chih.
           </p>
           <div class="event-card__schedule">
-            <span>🍽 Comida: 7 – 9 pm</span>
-            <span>💃 Baile: 9 – 2 am</span>
+            <span class="event-card__schedule-item">
+              <i data-lucide="clock" class="icon-gold"></i> 7:00 p.m.
+            </span>
           </div>
           <a
             href="https://maps.google.com/maps/place//data=!4m2!3m1!1s0x86ea5d0addf9298f:0x7c06af4cf159cb87?entry=s&sa=X&hl=es-us"
             target="_blank"
             class="event-card__map-btn"
           >
-            📍 Ver en Google Maps
+            <i data-lucide="map-pin" class="icon-btn"></i> Ver en Google Maps
           </a>
         </div>
 
@@ -180,8 +183,7 @@
   <!-- ════════════════ CUENTA REGRESIVA ════════════════ -->
   <section class="countdown" id="countdown-section">
     <div class="container reveal">
-      <h3 class="section-title">Faltan…</h3>
-      <p class="countdown__subtitle">25 de Julio · 2026</p>
+      <h3 class="section-title" style="font-family: 'Playfair Display', serif;">✨FALTAN✨</h3>      
       <div class="countdown__grid" id="countdown">
 
         <div class="countdown__unit">
@@ -228,29 +230,76 @@
     </div>
   </section>
 
-  <!-- ════════════════ MAPA ════════════════ -->
-  <section class="map-section" id="mapa">
+  <!-- ════════════════ CARTA ELEGANTE ════════════════ -->
+  <section class="quote-section" id="frase">
+
+    <!-- Esquinas decorativas -->
+    <div class="quote__corner quote__corner--tl"></div>
+    <div class="quote__corner quote__corner--tr"></div>
+    <div class="quote__corner quote__corner--bl"></div>
+    <div class="quote__corner quote__corner--br"></div>
+
     <div class="container reveal">
-      <h3 class="section-title">¿Cómo llegar?</h3>
-      <p class="section-sub">Quinta Regina · Labor de Terrazas, Chihuahua</p>
-      <div class="map-wrapper">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.1!2d-106.0846!3d28.6353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ea5d0addf9298f%3A0x7c06af4cf159cb87!2sQuinta%20Regina!5e0!3m2!1ses!2smx!4v1"
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+
+      <p class="quote__eyebrow">Un mensaje</p>
+
+      <div class="quote__top-sep">
+        <span class="quote__top-sep-line"></span>
+        <span class="quote__top-sep-icon"></span>
+        <span class="quote__top-sep-line"></span>
       </div>
-      <a
-        href="https://maps.google.com/maps/place//data=!4m2!3m1!1s0x86ea5d0addf9298f:0x7c06af4cf159cb87?entry=s&sa=X&hl=es-us"
-        target="_blank"
-        class="btn-outline"
-      >Abrir en Google Maps</a>
+
+      <h3 class="quote__title">Con todo nuestro amor</h3>
+
+      <!-- Carta con sobre visual -->
+      <div class="quote__card">
+        <div class="quote__card-inner">
+          <!-- Comilla decorativa grande -->
+          <div class="quote__open-mark">"</div>
+
+          <p class="quote__body">
+            Hoy April da un paso hacia el mundo
+            como la joven maravillosa que es. Este
+            día es para celebrar sus sueños, su
+            alegría y el camino que apenas
+            comienza. Será un honor compartir
+            este momento tan especial contigo y
+            los tuyos.
+          </p>
+
+          <div class="quote__close-mark">"</div>
+
+          <!-- Separador ornamental interno -->
+          <div class="quote__card-sep">
+            <span class="quote__card-sep-line"></span>
+            <span class="quote__card-sep-diamond"></span>
+            <span class="quote__card-sep-line"></span>
+          </div>
+
+          <p class="quote__signature">Con amor, la familia<br><span class="quote__signature-name">Urtusuastegui</span></p>
+        </div>
+      </div>
+
     </div>
   </section>
+
+
+      <!-- ── HOSPEDAJE ──────────────────────────── -->
+    <section class="section hotel-section" id="hotels">
+      <div class="section-inner">        
+        <div class="hotel-grid">
+          <div class="hotel-card reveal" style="background: linear-gradient(160deg, #fdf9f3 0%, #f5ede0 100%);">      
+          <h2 class="section-title reveal" style="color: black;">Sugerencias de Hospedaje</h2>              
+            <div><img src="hotel.jpeg" width="260px" height="190px" class="bordes"></div>
+            <p style="font-size: 1.2em">Te recomendamos hospedarte <strong>cerca de los lugares del evento.</strong>
+          </p> 
+            <a href="https://maps.app.goo.gl/8QTek7WVrrUn2Nr59" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-magnifying-glass"></i> Buscar Hoteles
+            </a>
+          </div>
+        </div>
+      </div>          
+    </section>
 
   <!-- ════════════════ CONFIRMACIÓN ════════════════ -->
   <section class="rsvp" id="rsvp">
@@ -286,5 +335,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>

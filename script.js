@@ -181,3 +181,81 @@
     })
   })
 })()
+
+
+
+   // --- 9. CANVAS PÉTALOS ---
+    const canvas = document.getElementById('petalos-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let petalos = [];
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        window.addEventListener('resize', resize);
+        resize();
+
+        function Petalo() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * -canvas.height;
+            this.size = 15 + Math.random() * 20;
+            this.speedY = 1 + Math.random() * 2;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.opacity = 0.6 + Math.random() * 0.4;
+            this.angle = Math.random() * 2 * Math.PI;
+            this.spin = Math.random() * 0.02 - 0.01;
+            this.color = `rgba(204, 182, 130, ${this.opacity})`;
+        }
+
+        Petalo.prototype.update = function() {
+            this.y += this.speedY; this.x += this.speedX; this.angle += this.spin;
+            if (this.y > canvas.height) { this.y = -this.size; this.x = Math.random() * canvas.width; }
+        };
+
+        Petalo.prototype.draw = function() {
+            ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle);
+            ctx.beginPath(); ctx.moveTo(0, 0);
+            ctx.bezierCurveTo(-this.size/2, -this.size/2, this.size/2, -this.size/2, 0, 0);
+            ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
+        };
+
+        for (let i = 0; i < 30; i++) petalos.push(new Petalo());
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petalos.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        };
+        animate();
+    }
+
+   // --- EFECTO DE ESCRITURA (TYPEWRITER) ---
+    // Se mantiene intacto como lo tenías, funcionando con su propio observer
+    function setupTypewriter(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        
+        // Guardamos el contenido original antes de limpiar
+        const textoOriginal = el.innerHTML;
+        const textoPlano = textoOriginal.replace().replace(/<[^>]*>/g, '');
+        
+        // Reservamos el espacio para que no haya saltos visuales
+        el.style.minHeight = el.offsetHeight + 'px';
+        el.innerHTML = '';
+        
+        let i = 0;
+        const escribir = () => {
+            if (i < textoPlano.length) {
+                el.innerHTML += textoPlano.charAt(i) === '\n' ? '<br>' : textoPlano.charAt(i);
+                i++; 
+                setTimeout(escribir, 40);
+            }
+        };
+
+        const typewriterObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) { 
+                escribir(); 
+                typewriterObserver.unobserve(el); // Solo escribe una vez
+            }
+        }, { threshold: 0.3 });
+        
+        typewriterObserver.observe(el);
+    }    
+    setupTypewriter('hero-frase');
