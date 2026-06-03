@@ -254,27 +254,40 @@
           audio.volume = vol
           if (vol >= 1) clearInterval(fadeIn)
         }, 80)
+        
+        // Si se logra reproducir con éxito (ya sea al cargar o al primer clic),
+        // removemos los listeners globales para no volver a ejecutar el fade-in.
+        removeUnlockListeners()
       })
-      .catch(() => setPlaying(false))
+      .catch(() => {
+        // El navegador bloqueó el autoplay, se queda en espera de la interacción
+        setPlaying(false)
+      })
   }
 
-  // ── Activar al primer scroll ──
-  let scrollUnlocked = false
-  function onFirstScroll () {
-    if (scrollUnlocked) return
-    scrollUnlocked = true
-    window.removeEventListener('scroll',    onFirstScroll)
-    window.removeEventListener('touchmove', onFirstScroll)
-    window.removeEventListener('wheel',     onFirstScroll)
+  // ── Desbloqueo absoluto con la mínima interacción válida ──
+  function unlockAudio () {
     startWithFade()
   }
 
-  window.addEventListener('scroll',    onFirstScroll, { passive: true })
-  window.addEventListener('touchmove', onFirstScroll, { passive: true })
-  window.addEventListener('wheel',     onFirstScroll, { passive: true })
+  function removeUnlockListeners () {
+    document.removeEventListener('click', unlockAudio)
+    document.removeEventListener('touchstart', unlockAudio)
+    document.removeEventListener('keydown', unlockAudio)
+  }
 
-  // Click manual
-  btn.addEventListener('click', () => {
+  // 1. Intento inmediato al abrir la página (Autoplay directo)
+  startWithFade()
+
+  // 2. Respaldo: Si el autoplay falla, se activará automáticamente con CUALQUIER 
+  // interacción inicial (hacer clic en cualquier lado, tocar la pantalla del móvil o presionar una tecla)
+  document.addEventListener('click', unlockAudio)
+  document.addEventListener('touchstart', unlockAudio)
+  document.addEventListener('keydown', unlockAudio)
+
+  // Botón manual (Mantiene su función por si el usuario quiere pausar o reanudar)
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation() // Evita que este clic interfiera con el listener global
     if (playing) {
       audio.pause()
       setPlaying(false)
