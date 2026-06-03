@@ -1171,6 +1171,7 @@ a { color: inherit; text-decoration: none; }
   background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
   padding: 60px 24px 40px;
   text-align: center;
+  margin-top: -50px;
 }
 
 .footer__mask {
