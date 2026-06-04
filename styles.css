@@ -198,7 +198,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 1.6rem;
-  margin-top: -50px;
+  margin-top: -60px;
 }
 
 /* Hero photo */
@@ -1454,4 +1454,12 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 480px) {
   .music-btn { bottom: 1.4rem; right: 1.4rem; }
   .music-btn__disc { width: 54px; height: 54px; }
+}
+
+/* ══════════════════════════════════════════════
+   HERO LOCKED — bloqueo de scroll inicial
+══════════════════════════════════════════════ */
+body.hero-locked {
+  overflow: hidden;
+  height: 100svh;
 }
