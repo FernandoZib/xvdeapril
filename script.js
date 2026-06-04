@@ -2,6 +2,29 @@
    script.js — XV Años April Urtusuastegui
 ══════════════════════════════════════════════ */
 
+// ─── 0. HERO SCROLL LOCK ──────────────────────
+;(function () {
+  // Bloquear scroll al cargar
+  document.body.classList.add('hero-locked')
+
+  const ctaBtn = document.querySelector('.hero__cta')
+  if (!ctaBtn) return
+
+  ctaBtn.addEventListener('click', function (e) {
+    e.preventDefault()
+
+    // 1. Liberar el scroll
+    document.body.classList.remove('hero-locked')
+
+    // 2. Hacer scroll suave a #mensaje
+    const target = document.getElementById('mensaje')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  })
+})()
+
+
 // ─── 1. PARTICLES (golden dust) ───────────────
 ;(function () {
   const canvas = document.createElement('canvas')
