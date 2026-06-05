@@ -4,24 +4,50 @@
 
 // ─── 0. HERO SCROLL LOCK ──────────────────────
 ;(function () {
-  // Bloquear scroll al cargar
   document.body.classList.add('hero-locked')
 
   const ctaBtn = document.querySelector('.hero__cta')
-  if (!ctaBtn) return
+  const hero   = document.getElementById('hero')
 
-  ctaBtn.addEventListener('click', function (e) {
-    e.preventDefault()
-
-    // 1. Liberar el scroll
+  function unlock (scrollToMensaje) {
+    if (!document.body.classList.contains('hero-locked')) return
     document.body.classList.remove('hero-locked')
-
-    // 2. Hacer scroll suave a #mensaje
-    const target = document.getElementById('mensaje')
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
+    if (scrollToMensaje) {
+      const target = document.getElementById('mensaje')
+      if (target) target.scrollIntoView({ behavior: 'smooth' })
     }
-  })
+  }
+
+  // Botón CTA — siempre libera y hace scroll (móvil y escritorio)
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      unlock(true)
+    })
+  }
+
+  // Escritorio — libera con el primer scroll de rueda o trackpad
+  function onWheel () {
+    unlock(false)
+    window.removeEventListener('wheel', onWheel)
+  }
+
+  // Escritorio — libera con la primera tecla de flecha o espacio
+  function onKey (e) {
+    const keys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', ' ']
+    if (keys.includes(e.key)) {
+      unlock(false)
+      window.removeEventListener('keydown', onKey)
+    }
+  }
+
+  const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+  if (isDesktop) {
+    window.addEventListener('wheel', onWheel,   { passive: true })
+    window.addEventListener('keydown', onKey)
+  }
 })()
 
 
