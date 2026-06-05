@@ -442,7 +442,7 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════ */
 .events {
   padding: 90px 1px;
-  background: #722F37;
+background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   position: relative;
   overflow: hidden;
 }
